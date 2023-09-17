@@ -1,20 +1,29 @@
 package dat250.appassignA.model;
 
-// Child class Voter that inherits from User
-
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
-@Inheritance
 public class Voter extends User {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    private int id;
+
     private boolean hasVoted;
 
+    // Constructor with username, password, and voterId as parameters
+    public Voter(String username, String password, int voterId) {
+        super(username, password);
+        this.id = voterId;
+    }
+
+    public Voter() {
+
+    }
 }

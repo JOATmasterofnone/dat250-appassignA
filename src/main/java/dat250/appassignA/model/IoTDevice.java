@@ -12,7 +12,7 @@ import lombok.Setter;
 public class IoTDevice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private Integer redVotes;
 
@@ -27,5 +27,9 @@ public class IoTDevice {
     // Constructors, including one that initializes display
     public IoTDevice() {
         this.display = new IoTDisplay();
+    }
+
+    public IoTDevice(Poll pairedPoll) {
+        this.pairedPoll = pairedPoll;
     }
 }

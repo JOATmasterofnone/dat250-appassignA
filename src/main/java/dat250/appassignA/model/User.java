@@ -13,24 +13,27 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private String username;
-    @Setter
-    @Getter
+
     private String email;
-    @Setter
-    @Getter
+
     private String password;
-    @Setter
-    @Getter
+
     @OneToMany
     private List<Poll> polls;
 
-    // Constructors
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
+    public User() {
+
+    }
 }
